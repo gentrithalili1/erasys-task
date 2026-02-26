@@ -16,6 +16,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@erasys-monorepo/source"]
+    "customConditions": ["@erasys-monorepo/source"],
+    "baseUrl": ".",
+    "paths": {
+      "@erasys-monorepo/shared-profiles": [
+        "apps/shared-profiles/src/index.ts"
+      ]
+    }
   }
 }

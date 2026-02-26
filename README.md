@@ -1,12 +1,33 @@
 # ErasysMonorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Quick start
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+**Install**
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/next?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+```sh
+npm install
+```
 
-## Run tasks
+**Run**
+
+```sh
+npm run dev
+```
+
+- Next.js app: http://localhost:4200
+- SPA: http://localhost:5173
+
+**Test**
+
+```sh
+npm run test
+```
+
+Runs all project tests (shared-profiles, spa). To test one project: `npx nx test @erasys-monorepo/shared-profiles` or `npx nx test @erasys-monorepo/spa`.
+
+---
+
+<!--
 
 To run the dev server for your app, use:
 
@@ -89,13 +110,62 @@ Nx Console is an editor extension that enriches your developer experience. It le
 
 Learn more:
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/next?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
+- [Learn more about this workspace setup](https://nx.dev/nx-api/next?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
 And join the Nx community:
+
 - [Discord](https://go.nx.dev/community)
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
 - [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Projects in this monorepo
+
+- **Next.js SSR app**: `web-ssr`
+  - Uses the App Router and **server-side rendering**.
+  - Renders a gallery of Hunqz profiles using the shared `shared-profiles` library.
+  - Exposes a backend **API proxy** at `/api/profiles` that calls the remote Hunqz API and sets CORS headers.
+- **React SPA (CSR)**: `@erasys-monorepo/spa`
+  - Vite-based React single-page app, styled with Tailwind.
+  - Fetches profile data from the `web-ssr` API proxy so that CORS is handled server-side.
+- **Shared library**: `@erasys-monorepo/shared-profiles`
+  - Typed, reusable utilities for fetching and transforming profile data and image URLs.
+  - Covered by minimal **Vitest** tests for URL building, mapping, and sampling logic.
+
+## Running the apps
+
+From the workspace root:
+
+```sh
+# Run both apps in parallel
+npm run dev
+```
+
+Or run individually:
+
+```sh
+# Next.js SSR app (defaults to http://localhost:4200)
+npx nx dev web-ssr
+
+# React SPA (defaults to http://localhost:5173)
+npx nx dev @erasys-monorepo/spa
+```
+
+For the SPA to call the Next.js API proxy, configure the base URL:
+
+```sh
+# apps/spa/.env.local
+VITE_API_BASE_URL=http://localhost:4200
+```
+
+## Running tests
+
+```sh
+# Shared library tests
+npx nx test @erasys-monorepo/shared-profiles
+```
+
+The shared library is framework-agnostic and can be reused from API routes, server components, or client applications. -->

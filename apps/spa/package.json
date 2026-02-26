@@ -1,0 +1,8 @@
+{
+  "name": "@erasys-monorepo/spa",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@erasys-monorepo/shared-profiles": "*"
+  }
+}

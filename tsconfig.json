@@ -5,6 +5,12 @@
   "references": [
     {
       "path": "./apps/web-ssr"
+    },
+    {
+      "path": "./apps/spa"
+    },
+    {
+      "path": "./apps/shared-profiles"
     }
   ]
 }
