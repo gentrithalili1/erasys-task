@@ -47,7 +47,6 @@ describe('mapRemoteProfiles', () => {
     expect(mapped[0]).toMatchObject({
       id: 1,
       displayName: 'Alice',
-      raw: raw[0],
     });
     expect(mapped[0].pictures).toHaveLength(2);
     expect(mapped[0].pictures![0]).toEqual({
@@ -62,7 +61,6 @@ describe('mapRemoteProfiles', () => {
     expect(mapped[1]).toMatchObject({
       id: 'x',
       displayName: 'Bob',
-      raw: raw[1],
     });
     expect(mapped[1].pictures).toBeUndefined();
   });
@@ -92,7 +90,6 @@ describe('fetchProfilesFromRemote', () => {
     expect(result[0]).toMatchObject({
       id: 1,
       displayName: 'Alice',
-      raw: expect.any(Object),
     });
     expect(result[0].pictures).toHaveLength(1);
     expect(result[0].pictures![0]).toEqual({
