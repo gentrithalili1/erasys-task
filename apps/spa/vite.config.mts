@@ -9,6 +9,7 @@ export default defineConfig(() => ({
   resolve: {
     alias: {
       '@erasys-monorepo/shared-profiles': path.resolve(import.meta.dirname, '../shared-profiles/src/index.ts'),
+      '@erasys-monorepo/shared-ui': path.resolve(import.meta.dirname, '../../libs/shared-ui/src/index.ts'),
     },
   },
   server: {
