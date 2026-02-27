@@ -24,9 +24,13 @@ export function ListProfiles({
       </h2>
       <div className="space-y-10">
         {error ? (
-          <p className="text-red-400 text-center">{error}</p>
+          <p role="alert" className="text-red-400 text-center">
+            {error}
+          </p>
         ) : loading ? (
-          <p className="text-slate-400 text-center">Loading profiles...</p>
+          <p role="status" aria-live="polite" className="text-slate-400 text-center">
+            Loading profiles...
+          </p>
         ) : (
           profiles.map((profile) => (
             <ProfileCard
