@@ -29,7 +29,7 @@ export default async function Index() {
 
         <ListProfiles
           profiles={profiles}
-          renderPicture={(picture, alt) => (
+          renderPicture={({ picture, alt }) => (
             <Image
               src={picture.src}
               alt={alt}

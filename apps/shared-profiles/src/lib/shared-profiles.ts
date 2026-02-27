@@ -1,12 +1,11 @@
+// These should be extracted to a config file or environment variable, for now we'll use the default values for demonstration purposes
 export const REMOTE_PROFILE_ENDPOINT =
   'https://www.hunqz.com/api/opengrid/profiles/msescortplus';
-
 export const PROFILE_IMAGE_BASE_URL =
   'https://www.hunqz.com/img/usr/original/0x0';
 
 export interface RemoteProfile {
   id?: string | number;
-  // Some endpoints may expose a top-level url_token, others only inside pictures
   url_token?: string;
   display_name?: string;
   name?: string;
@@ -17,18 +16,17 @@ export interface RemoteProfile {
     id: string;
     url_token?: string;
   }>;
-  // Allow additional properties without losing type safety for known fields
   [key: string]: unknown;
 }
 
+export interface Picture {
+  id: string;
+  src: string;
+}
 export interface Profile {
   id: string;
   displayName: string;
-  pictures: Array<{
-    id: string;
-    src: string;
-  }>;
-  raw: RemoteProfile;
+  pictures: Array<Picture>;
 }
 
 export function buildProfileImageUrl(urlToken?: string): string {
@@ -51,8 +49,6 @@ export function mapRemoteProfiles(raw: RemoteProfile[]): Profile[] {
             src: buildProfileImageUrl(picture.url_token),
           };
         }),
-
-        raw: p,
       };
     })
     .filter((p): p is Profile => p !== null);

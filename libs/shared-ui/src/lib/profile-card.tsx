@@ -1,12 +1,14 @@
 import type { ReactNode } from 'react';
-import type { Profile } from '@erasys-monorepo/shared-profiles';
+import type { Picture, Profile } from '@erasys-monorepo/shared-profiles';
+
+export type RenderPicture = (params: {
+  picture: Picture;
+  alt: string;
+}) => ReactNode;
 
 export interface ProfileCardProps {
   profile: Profile;
-  renderPicture: (
-    picture: { id: string; src: string },
-    alt: string,
-  ) => ReactNode;
+  renderPicture: RenderPicture;
 }
 
 export function ProfileCard({ profile, renderPicture }: ProfileCardProps) {
@@ -24,7 +26,7 @@ export function ProfileCard({ profile, renderPicture }: ProfileCardProps) {
             key={picture.id}
             className="relative aspect-[3/4] min-w-0 overflow-hidden rounded-xl bg-slate-800"
           >
-            {renderPicture(picture, profile.displayName)}
+            {renderPicture({ picture, alt: profile.displayName })}
           </div>
         ))}
       </div>

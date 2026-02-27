@@ -18,7 +18,7 @@ export function App() {
           profiles={profiles}
           loading={isLoading}
           error={error ?? undefined}
-          renderPicture={(picture, alt) => (
+          renderPicture={({ picture, alt }) => (
             <img
               src={picture.src}
               alt={alt}

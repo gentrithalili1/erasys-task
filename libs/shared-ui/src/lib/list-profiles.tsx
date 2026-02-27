@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import type { Profile } from '@erasys-monorepo/shared-profiles';
+import type { RenderPicture } from './profile-card';
 import { ProfileCard } from './profile-card';
 
 export interface ListProfilesProps {
@@ -7,10 +7,7 @@ export interface ListProfilesProps {
   sectionTitle?: string;
   loading?: boolean;
   error?: string;
-  renderPicture: (
-    picture: { id: string; src: string },
-    alt: string
-  ) => ReactNode;
+  renderPicture: RenderPicture;
 }
 
 export function ListProfiles({
